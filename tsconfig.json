@@ -1,0 +1,26 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "allowJs": false,
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noEmitOnError": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": false, // hmm
+        "noUnusedParameters": false, //hmm
+        "removeComments": true,
+        "sourceMap": false,
+        "strict": true,
+        "target": "es6",
+        "watch": false
+    },
+    "exclude": [
+        "node_modules",
+        "legacy"
+    ],
+    "include": [
+        "src/**/*.ts",
+        "webpack.config.ts",
+    ]
+}
