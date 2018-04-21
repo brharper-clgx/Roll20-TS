@@ -7,7 +7,7 @@
         "noEmitOnError": true,
         "noFallthroughCasesInSwitch": true,
         "noImplicitReturns": true,
-        "noUnusedLocals": false, // hmm
+        "noUnusedLocals": true,
         "noUnusedParameters": false, //hmm
         "removeComments": true,
         "sourceMap": false,
