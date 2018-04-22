@@ -1,7 +1,7 @@
 import { TurnorderService } from "../services/turnorder-service";
 
 export class PcInit {
-    private static players: string[] = ["Red", "Rosco", "Shirra", "Yack"];
+    private static readonly players: string[] = ["Red", "Rosco", "Shirra", "Yack"];
 
     public static handleCommand(commands: string[]): void {
         if (commands[1] === '--clear') {

@@ -2,8 +2,8 @@ import { TurnorderService } from "../services/turnorder-service";
 
 
 export class RoundCounter {
-    private static roundStr = "-- Round --";
-    private static speakingAs = "GM";
+    private static readonly roundStr = "-- Round --";
+    private static readonly speakingAs = "GM";
 
     public static handleEvent(): void {
         const turnorder = TurnorderService.get() as TurnOrdering[];
