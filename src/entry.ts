@@ -3,10 +3,11 @@ import { PcInit } from "./commands/pc-init";
 import { RoundCounter } from "./commands/round-counter";
 import { TurnMarker } from "./commands/turn-marker";
 import { EndCombat } from "./commands/end-combat";
+import { GroupInit } from "./commands/group-init";
 
 class Entry extends Roll20ApiScript {
     constructor() {
-        super('Entry', 'pc-init', 'end-combat');
+        super('Entry', 'pc-init', 'end-combat', 'group-init');
     }
     
     protected apiChatMessageHandler(message: ApiChatEventData): void {
@@ -16,6 +17,9 @@ class Entry extends Roll20ApiScript {
         }
         else if(commands[0] === '!end-combat') {
             EndCombat.handleCommand();
+        }
+        else if(commands[0] === '!group-init') {
+            GroupInit.handleCommand(message.selected);
         }
     }
     protected graphicChangeHandler(graphic: Graphic, previous: any): void {

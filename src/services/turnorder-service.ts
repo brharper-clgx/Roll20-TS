@@ -23,4 +23,16 @@ export class TurnorderService {
         turnorder.push(turn);
         TurnorderService.set(turnorder);
     }
+
+    public static order(): void {
+        let turnorder = TurnorderService.get() as TurnOrdering[];
+        let last = 100000;
+        turnorder = _.sortBy(turnorder,function(i){
+            let val=(-(parseFloat(i.pr.toString())));
+            val = _.isNaN(val) ? last : val;
+            last=val;
+            return val;
+        }); 
+        TurnorderService.set(turnorder);
+    }
 }
