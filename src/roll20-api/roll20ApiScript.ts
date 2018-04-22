@@ -29,6 +29,10 @@ export abstract class Roll20ApiScript {
                     this.graphicChangeHandler(graphic, previous);
                 });
 
+                on("change:campaign:turnorder", (campaign: Campaign, prev) => {
+                    this.turnorderChangeHandler(campaign, prev);
+                });
+
                 log(`${new Date().toLocaleString()}: ${this.scriptName} loaded.`);
             });
 
@@ -41,6 +45,7 @@ export abstract class Roll20ApiScript {
      */
     protected abstract apiChatMessageHandler(message: ApiChatEventData): void;
     protected abstract graphicChangeHandler(object: Graphic, previous: any): void;
+    protected abstract turnorderChangeHandler(object: Campaign, previous: CampaignImmutableSynchronousGetProperties & CampaignMutableSynchronousGetProperties): void;
 
     protected handleError<T>(message: string, object: T) {
         sendChat(this.scriptName, message);
