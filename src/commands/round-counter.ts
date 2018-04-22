@@ -5,7 +5,7 @@ export class RoundCounter {
     private static readonly roundStr = "-- Round --";
     private static readonly speakingAs = "GM";
 
-    public static handleEvent(): void {
+    public static handleTurnChange(): void {
         const turnorder = TurnorderService.get() as TurnOrdering[];
 
         let roundObj = turnorder.find(t => t.custom === this.roundStr) as TurnOrdering;
