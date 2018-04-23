@@ -8,8 +8,8 @@ export class GroupInit {
         const selectedTokensInfo = selectedItems.filter(i => i._type === 'graphic') as ApiChatEventDataSelectObjectInfo[];
 
         selectedTokensInfo.forEach((tokenInfo: ApiChatEventDataSelectObjectInfo) => {
-            let graphic = getObj('graphic', tokenInfo._id) as Graphic;
-            let character = getObj('character', graphic.get('represents')) as Character;
+            let graphic = getObj(ObjectType.Graphic, tokenInfo._id) as Graphic;
+            let character = getObj(ObjectType.Character, graphic.get('represents')) as Character;
             let dexScore: number = +getAttrByName(character.id, 'dexterity');
             let dexMod: number = Math.floor( (dexScore-10) / 2);
             let initRoll: number = DiceService.d20() + dexMod;

@@ -9,10 +9,31 @@ declare const Cheerio: CheerioStatic;
  */
 declare const state: any;
 
-type ObjectType = "graphic" | "text" | "path" | "character" | "ability" | "attribute" | "handout" | "rollabletable" | "tableitem" | "macro" | "campaign" | "player";
+// type ObjectType = "graphic" | "text" | "path" | "character" | "ability" | "attribute" | "handout" | "rollabletable" | "tableitem" | "macro" | "campaign" | "player";
 type RollType = "V" | "G" | "M" | "R" | "C";
 type RollResultType = "sum" | "success";
 type Layer = "gmlayer" | "objects" | "map" | "walls";
+
+declare const enum ObjectType {
+    Character = "character",
+    Graphic = "graphic",
+    Player = "player",
+    Path = "path",
+    Text = "text",
+    Page = "page",
+    Campaign = "campaign",
+    Macro = "macro",
+    RollableTable = "rollabletable",
+    TableItem = "tableitem",
+    Attribute = "attribute",
+    Ability = "ability",
+    Handout = "handout",
+    Deck = "deck",
+    Card = "card",
+    Hand = "hand",
+    Track = "jukeboxtrack",
+    CustomFX = "custfx",
+}
 
 /**
  * Roll20 objects are a special kind of JavaScript object. They represent something in your campaign, such as a token on the tabletop or a character in the journal, and there is some special consideration for using them. 
@@ -70,6 +91,8 @@ interface Roll20ObjectBase<TImmutableSynchronousGetProperties, TImmutableAsynchr
      */
     set(properties: Partial<TMutableSynchronousGetProperties | TMutableAsynchronousGetProperties>): void;
 
+    
+
     /**
      * Sets one or more specified property values and runs the character sheet workers related to that property (if any).
      * 
@@ -84,7 +107,7 @@ interface Roll20ObjectBaseProperties {
 }
 
 interface CampaignImmutableSynchronousGetProperties extends Roll20ObjectBaseProperties {
-    readonly _type: "campaign";
+    readonly _type: ObjectType.Campaign;
     readonly _journalfolder: string;
     readonly _jukeboxfolder: string;
 }
@@ -99,7 +122,7 @@ interface CampaignMutableSynchronousGetProperties {
 interface Campaign extends Roll20ObjectBase<CampaignImmutableSynchronousGetProperties, never, CampaignMutableSynchronousGetProperties, never> { }
 
 interface PlayerImmutableSynchronousGetProperties extends Roll20ObjectBaseProperties {
-    readonly _type: "player";
+    readonly _type: ObjectType.Player;
     readonly _d20userid: string;
     readonly _displayname: string;
     readonly _online: boolean;
@@ -116,7 +139,7 @@ interface PlayerMutableSynchronousGetProperties {
 interface Player extends Roll20ObjectBase<PlayerImmutableSynchronousGetProperties, never, PlayerMutableSynchronousGetProperties, never> { }
 
 interface TextImmutableSynchronousGetProperties extends Roll20ObjectBaseProperties {
-    readonly _type: "text";
+    readonly _type: ObjectType.Text;
     readonly _pageid: string;
 }
 
@@ -137,7 +160,7 @@ interface TextMutableSynchronousGetProperties {
 interface Text extends Roll20ObjectBase<TextImmutableSynchronousGetProperties, never, TextMutableSynchronousGetProperties, never> { }
 
 interface GraphicImmutableSynchronousGetProperties extends Roll20ObjectBaseProperties {
-    readonly _type: "graphic";
+    readonly _type: ObjectType.Graphic;
     readonly _subtype: "token" | "card";
     readonly _cardId?: string;
     readonly _pageid: ""
@@ -201,7 +224,7 @@ interface GraphicMutableSynchronousGetProperties {
 interface Graphic extends Roll20ObjectBase<GraphicImmutableSynchronousGetProperties, never, GraphicMutableSynchronousGetProperties, never> { }
 
 interface CharacterImmutableSynchronousGetProperties extends Roll20ObjectBaseProperties {
-    readonly _type: "character";
+    readonly _type: ObjectType.Character;
 }
 
 interface CharacterImmutableAsynchronousGetProperties {
@@ -224,7 +247,7 @@ interface CharacterMutableAsynchronousGetProperties {
 interface Character extends Roll20ObjectBase<CharacterImmutableSynchronousGetProperties, CharacterImmutableAsynchronousGetProperties, CharacterMutableSynchronousGetProperties, CharacterMutableAsynchronousGetProperties> { }
 
 interface AttributeImmutableSynchronousGetProperties extends Roll20ObjectBaseProperties {
-    readonly _type: "attribute";
+    readonly _type: ObjectType.Attribute;
     readonly _characterid: string;
 }
 
@@ -237,7 +260,7 @@ interface AttributeMutableSynchronousGetProperties {
 interface Attribute extends Roll20ObjectBase<AttributeImmutableSynchronousGetProperties, never, AttributeMutableSynchronousGetProperties, never> { }
 
 interface AbilityImmutableSynchronousGetProperties extends Roll20ObjectBaseProperties {
-    readonly _type: "ability";
+    readonly _type: ObjectType.Ability;
     readonly _characterid: string;
 }
 
@@ -382,11 +405,11 @@ type AbilityCreationProperties = CharacterChildObjectCreationProperties & Partia
  * @param type The type of Roll20 object to create. Only 'graphic', 'text', 'path', 'character', 'ability', 'attribute', 'handout', 'rollabletable', 'tableitem', and 'macro' may be created.
  * @param properties The initial values to use for the Roll20 object's properties.
  */
-declare function createObj(type: "text", properties: TextCreationProperties): Text | undefined;
-declare function createObj(type: "graphic", properties: GraphicCreationProperties): Graphic | undefined;
-declare function createObj(type: "character", properties: CharacterCreationProperties): Character | undefined;
-declare function createObj(type: "attribute", properties: AttributeCreationProperties): Attribute | undefined;
-declare function createObj(type: "ability", properties: AbilityCreationProperties): Ability | undefined;
+declare function createObj(type: ObjectType.Text, properties: TextCreationProperties): Text | undefined;
+declare function createObj(type: ObjectType.Graphic, properties: GraphicCreationProperties): Graphic | undefined;
+declare function createObj(type: ObjectType.Graphic, properties: CharacterCreationProperties): Character | undefined;
+declare function createObj(type: ObjectType.Attribute, properties: AttributeCreationProperties): Attribute | undefined;
+declare function createObj(type: ObjectType.Ability, properties: AbilityCreationProperties): Ability | undefined;
 
 /**
  * Gets all Roll20 objects with properties that match a given set of properties.
@@ -412,12 +435,12 @@ declare function getAllObjs(): Roll20Object[];
  * @param type The type of Roll20 object to get.
  * @param id The unique id for the Roll20 object to get.
  */
-declare function getObj(type: "text", id: string): Text | undefined;
-declare function getObj(type: "graphic", id: string): Graphic | undefined;
-declare function getObj(type: "character", id: string): Character | undefined;
-declare function getObj(type: "attribute", id: string): Attribute | undefined;
-declare function getObj(type: "ability", id: string): Ability | undefined;
-declare function getObj(type: "player", id: string): Player | undefined;
+declare function getObj(type: ObjectType.Text, id: string): Text | undefined;
+declare function getObj(type: ObjectType.Graphic, id: string): Graphic | undefined;
+declare function getObj(type: ObjectType.Character, id: string): Character | undefined;
+declare function getObj(type: ObjectType.Attribute, id: string): Attribute | undefined;
+declare function getObj(type: ObjectType.Ability, id: string): Ability | undefined;
+declare function getObj(type: ObjectType.Player, id: string): Player | undefined;
 
 /**
  * Gets the value of an attribute, using the default value from the character sheet if the attribute is not present. value_type is an optional parameter, which you can use to specify "current" or "max".
