@@ -460,6 +460,27 @@ declare function on(event: "chat:message", callback: (msg: ChatEventData) => voi
 declare function on(event: "change:campaign:turnorder", callback: (obj: Campaign, prev: CampaignImmutableSynchronousGetProperties & CampaignMutableSynchronousGetProperties) => void): void;
 declare function on(event: "change:graphic", callback: (obj: Graphic, prev: any) => void): void;
 
+
+/** 
+* randomInteger(max)
+* Use This Function For Dice! This function accounts for Modulo Bias which ensures that the resulting random numbers are also evenly distributed between 1 and MAX.
+* 
+* Returns a random integer, with the lowest value being 1, and the highest value being max. This is the same functionality that Roll20 uses to power its dice rolls, 
+* and these numbers have been statistically and rigorously proven to be random.
+* 
+* Math.random()
+* 
+* You can call Math.random() like normal in your API scripts, trusting that the results will be random, because the "default" Math.random() in Javascript has been replaced
+* with the cryptographically-secure PRNG that powers Roll20. So existing scripts that use Math.random() can be used with knowing that the results really are as close to random
+* as it's possible to get on a computer.
+* 
+* Do not use Math.random() if even distribution of numbers in a range are desired. While Math.random() gives you as good of a random number as Roll20 can manage the math to turn
+* that random number into a range with even distribution (like a dice roll) is not as straight forward as multiplication with a modulo or a floor call. Use randomInteger(max) 
+* for those cases.
+*/
+declare function randomInteger(max: number): number;
+
+
 /**
  * Sends a chat message.
  * 
