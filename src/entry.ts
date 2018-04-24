@@ -4,6 +4,7 @@ import { RoundCounter } from "./commands/round-counter";
 import { TurnMarker } from "./commands/turn-marker";
 import { EndCombat } from "./commands/end-combat";
 import { GroupInit } from "./commands/group-init";
+import { HpMarker } from "./commands/hp-markers";
 
 class Entry extends Roll20ApiScript {
     constructor() {
@@ -23,7 +24,7 @@ class Entry extends Roll20ApiScript {
         }
     }
     protected graphicChangeHandler(graphic: Graphic, previous: any): void {
-        
+        HpMarker.handleGraphicChange(graphic);
     }
     protected turnorderChangeHandler(object: Campaign, previous: CampaignImmutableSynchronousGetProperties & CampaignMutableSynchronousGetProperties): void {
         RoundCounter.handleTurnChange();

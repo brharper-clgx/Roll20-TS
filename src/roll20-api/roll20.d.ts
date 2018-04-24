@@ -9,7 +9,6 @@ declare const Cheerio: CheerioStatic;
  */
 declare const state: any;
 
-// type ObjectType = "graphic" | "text" | "path" | "character" | "ability" | "attribute" | "handout" | "rollabletable" | "tableitem" | "macro" | "campaign" | "player";
 type RollType = "V" | "G" | "M" | "R" | "C";
 type RollResultType = "sum" | "success";
 type Layer = "gmlayer" | "objects" | "map" | "walls";
@@ -33,6 +32,64 @@ declare const enum ObjectType {
     Hand = "hand",
     Track = "jukeboxtrack",
     CustomFX = "custfx",
+}
+
+declare const enum StatusMarker {
+    Red = "red",
+    Blue = "blue",
+    Green = "green",
+    Brown = "brown",
+    Purple = "purple",
+    Pink = "pink",
+    Yellow = "yellow",
+    Dead = "dead",
+    Skull = "skull",
+    Sleepy = "sleepy",
+    HalfHeart = "half-heart",
+    HalfHaze = "half-haze",
+    Interdiction = "interdiction",
+    Snail = "snail",
+    LightningHelix = "lightning-helix",
+    Spanner = "spanner",
+    ChainedHeart = "chained-heart",
+    ChemicalBolt = "chemical-bolt",
+    DeathZone = "death-zone",
+    DrinkMe = "drink-me",
+    EdgeCrack = "edge-crack",
+    NinjaMask = "ninja-mask",
+    Stopwatch = "stopwatch",
+    FishingNet = "fishing-net",
+    Overdrive = "overdrive",
+    Strong = "strong",
+    Fist = "fist",
+    Padlock = "padlock",
+    ThreeLeaves = "three-leaves",
+    FluffyWing = "fluffy-wing",
+    Pummeled = "pummeled",
+    Tread = "tread",
+    Arrowed = "arrowed",
+    Aura = "aura",
+    BackPain = "back-pain",
+    BlackFlag = "black-flag",
+    BleedingEye = "bleeding-eye",
+    BoltShield = "bolt-shield",
+    BrokenHeart = "broken-heart",
+    Cobweb = "cobweb",
+    BrokenShield = "broken-shield",
+    FlyingFlag = "flying-flag",
+    Radioactive = "radioactive",
+    Trophy = "trophy",
+    BrokenSkull = "broken-skull",
+    FrozenOrb = "frozen-orb",
+    RollingBomb = "rolling-bomb",
+    WhiteTower = "white-tower",
+    Grab = "grab",
+    Screaming = "screaming",
+    Grenade = "grenade",
+    SentryGun = "sentry-gun",
+    AllForOne = "all-for-one",
+    AngelOutfit = "angel-outfit",
+    ArcheryTarget = "archery-target",
 }
 
 /**
@@ -91,7 +148,7 @@ interface Roll20ObjectBase<TImmutableSynchronousGetProperties, TImmutableAsynchr
      */
     set(properties: Partial<TMutableSynchronousGetProperties | TMutableAsynchronousGetProperties>): void;
 
-    
+
 
     /**
      * Sets one or more specified property values and runs the character sheet workers related to that property (if any).
