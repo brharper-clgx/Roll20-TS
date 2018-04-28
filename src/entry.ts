@@ -5,10 +5,11 @@ import { TurnMarker } from './commands/turn-marker';
 import { EndCombat } from './commands/end-combat';
 import { GroupInit } from './commands/group-init';
 import { HpMarker } from './commands/hp-markers';
+import { NameGen } from './commands/name-gen';
 
 class Entry extends Roll20ApiScript {
     constructor() {
-        super('Entry', 'pc-init', 'end-combat', 'group-init');
+        super('Entry', 'pc-init', 'end-combat', 'group-init', 'ngen');
     }
     
     protected apiChatMessageHandler(message: ApiChatEventData): void {
@@ -21,6 +22,9 @@ class Entry extends Roll20ApiScript {
         }
         else if(commands[0] === '!group-init') {
             GroupInit.handleCommand(message.selected);
+        }
+        else if(commands[0] === '!ngen') {
+            NameGen.handleCommand(commands);
         }
     }
     protected graphicChangeHandler(graphic: Graphic, previous: any): void {
