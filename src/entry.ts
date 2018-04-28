@@ -1,10 +1,10 @@
-import { Roll20ApiScript } from "./roll20-api/roll20ApiScript";
-import { PcInit } from "./commands/pc-init";
-import { RoundCounter } from "./commands/round-counter";
-import { TurnMarker } from "./commands/turn-marker";
-import { EndCombat } from "./commands/end-combat";
-import { GroupInit } from "./commands/group-init";
-import { HpMarker } from "./commands/hp-markers";
+import { Roll20ApiScript } from './roll20-api/roll20ApiScript';
+import { PcInit } from './commands/pc-init';
+import { RoundCounter } from './commands/round-counter';
+import { TurnMarker } from './commands/turn-marker';
+import { EndCombat } from './commands/end-combat';
+import { GroupInit } from './commands/group-init';
+import { HpMarker } from './commands/hp-markers';
 
 class Entry extends Roll20ApiScript {
     constructor() {
@@ -12,7 +12,7 @@ class Entry extends Roll20ApiScript {
     }
     
     protected apiChatMessageHandler(message: ApiChatEventData): void {
-        const commands = message.content.split(" ");
+        const commands = message.content.split(' ');
         if (commands[0] === '!pc-init') {
             PcInit.handleCommand(commands);
         }

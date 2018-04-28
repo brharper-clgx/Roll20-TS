@@ -1,9 +1,9 @@
-import { TurnorderService } from "../services/turnorder-service";
+import { TurnorderService } from '../services/turnorder-service';
 
 
 export class RoundCounter {
-    private static readonly roundStr = "-- Round --";
-    private static readonly speakingAs = "GM";
+    private static readonly roundStr = '-- Round --';
+    private static readonly speakingAs = 'GM';
 
     public static handleTurnChange(): void {
         const turnorder = TurnorderService.get() as TurnOrdering[];
@@ -28,6 +28,6 @@ export class RoundCounter {
     }
 
     private static createTurnOrdering(roundNum: number): TurnOrdering {
-        return { id: "-1", pr: roundNum, custom: this.roundStr, _pageid: "" };
+        return { id: '-1', pr: roundNum, custom: this.roundStr, _pageid: '' };
     }
 }

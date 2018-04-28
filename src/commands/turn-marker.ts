@@ -1,5 +1,5 @@
-import { TurnorderService } from "../services/turnorder-service";
-import { TokenService } from "../services/token-service";
+import { TurnorderService } from '../services/turnorder-service';
+import { TokenService } from '../services/token-service';
 
 export class TurnMarker {    
     public static handleTurnChange(): void {

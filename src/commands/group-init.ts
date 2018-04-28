@@ -1,6 +1,6 @@
-import { DiceService } from "../services/dice-service";
-import { TurnorderService } from "../services/turnorder-service";
-import { TokenService } from "../services/token-service";
+import { DiceService } from '../services/dice-service';
+import { TurnorderService } from '../services/turnorder-service';
+import { TokenService } from '../services/token-service';
 
 export class GroupInit {
     public static handleCommand(selectedItems: ApiChatEventDataSelectObjectInfo[] | undefined): void {
@@ -15,9 +15,9 @@ export class GroupInit {
             let initRoll: number = DiceService.d20() + dexMod;
             TurnorderService.add({
                 id: graphic.id,
-                _pageid: "",
+                _pageid: '',
                 pr: initRoll,
-                custom: ""
+                custom: ''
             });
         });
 

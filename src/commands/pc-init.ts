@@ -1,7 +1,7 @@
-import { TurnorderService } from "../services/turnorder-service";
+import { TurnorderService } from '../services/turnorder-service';
 
 export class PcInit {
-    private static readonly players: string[] = ["Red", "Rosco", "Shirra", "Yack"];
+    private static readonly players: string[] = ['Red', 'Rosco', 'Shirra', 'Yack'];
 
     public static handleCommand(commands: string[]): void {
         if (commands[1] === '--clear') {
@@ -14,10 +14,10 @@ export class PcInit {
     public static addPlayers(): void {
         PcInit.players.forEach(player => {
             TurnorderService.add({
-                id: "-1",
+                id: '-1',
                 pr: 0,
                 custom: player,
-                _pageid: "",
+                _pageid: '',
             });
         });
         TurnorderService.show();

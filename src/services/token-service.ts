@@ -1,5 +1,5 @@
-import { Status } from "../models/status";
-import { isNullOrWhitespace } from "../utils/string-util";
+import { Status } from '../models/status';
+import { isNullOrWhitespace } from '../utils/string-util';
 
 export class TokenService {
     public static aura1(id: string, radius: string): void {

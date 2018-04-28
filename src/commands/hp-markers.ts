@@ -1,4 +1,4 @@
-import { TokenService } from "../services/token-service";
+import { TokenService } from '../services/token-service';
 
 export class HpMarker {
     private static readonly ratio = 0.5;

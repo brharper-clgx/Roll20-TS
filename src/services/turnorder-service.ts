@@ -2,20 +2,20 @@ export class TurnorderService {
 
     public static get(): TurnOrdering[]
     {
-        const turnOrderStr = Campaign().get("turnorder");
-        return JSON.parse(turnOrderStr || "[]") as TurnOrdering[];
+        const turnOrderStr = Campaign().get('turnorder');
+        return JSON.parse(turnOrderStr || '[]') as TurnOrdering[];
     }
 
     public static set(turnorder: TurnOrdering[]): void {
-        Campaign().set("turnorder", JSON.stringify(turnorder));
+        Campaign().set('turnorder', JSON.stringify(turnorder));
     }
 
     public static clear(): void {
-        Campaign().set("turnorder", "[]");
+        Campaign().set('turnorder', '[]');
     }
 
     public static show(shouldShow = true): void {
-        Campaign().set("initiativepage", shouldShow);
+        Campaign().set('initiativepage', shouldShow);
     }
 
     public static add(turn: TurnOrdering): void {
