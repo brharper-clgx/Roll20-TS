@@ -6,10 +6,11 @@ import { EndCombat } from './commands/end-combat';
 import { GroupInit } from './commands/group-init';
 import { HpMarker } from './commands/hp-markers';
 import { NameGen } from './commands/name-gen';
+import { TavernGen } from './commands/tavern-gen';
 
 class Entry extends Roll20ApiScript {
     constructor() {
-        super('Entry', 'pc-init', 'end-combat', 'group-init', 'ngen');
+        super('Entry', 'pc-init', 'end-combat', 'group-init', 'ngen', 'tgen');
     }
     
     protected apiChatMessageHandler(message: ApiChatEventData): void {
@@ -25,6 +26,9 @@ class Entry extends Roll20ApiScript {
         }
         else if(commands[0] === '!ngen') {
             NameGen.handleCommand(commands);
+        }
+        else if(commands[0] === '!tgen') {
+            TavernGen.handleCommand(commands);
         }
     }
     protected graphicChangeHandler(graphic: Graphic, previous: any): void {
