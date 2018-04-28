@@ -20,16 +20,19 @@ export abstract class Roll20ApiScript {
 
     public register() {
         if (!this._isRegistered) {
-            on("ready", () => {
-                on("chat:message", (message) => {
+            on('ready', () => {
+
+                // Show state
+                // log(JSON.stringify(state));
+                on('chat:message', (message) => {
                     if (this.commandFound(message)) { this.apiChatMessageHandler(message as ApiChatEventData); }
                 });
 
-                on("change:graphic", (graphic: Graphic, previous: any) => {
+                on('change:graphic', (graphic: Graphic, previous: any) => {
                     this.graphicChangeHandler(graphic, previous);
                 });
 
-                on("change:campaign:turnorder", (campaign: Campaign, prev) => {
+                on('change:campaign:turnorder', (campaign: Campaign, prev) => {
                     this.turnorderChangeHandler(campaign, prev);
                 });
 
@@ -57,7 +60,7 @@ export abstract class Roll20ApiScript {
     }
 
     private commandFound(message: ChatEventData): boolean {
-        if (message.type !== "api") { return false; }
+        if (message.type !== 'api') { return false; }
 
         const apiMessage = message as ApiChatEventData;
         let commandFound: boolean = false;

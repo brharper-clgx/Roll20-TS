@@ -7,7 +7,11 @@ declare const Cheerio: CheerioStatic;
 /**
  * Properties of the state object will persist between game sessions.
  */
-declare const state: any;
+declare const state: State;
+
+interface State {
+    [key: string]: any;
+}
 
 type RollType = "V" | "G" | "M" | "R" | "C";
 type RollResultType = "sum" | "success";
